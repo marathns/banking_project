@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+				
+<form action="/insert" method="POST">
+			               <div class="form-group">
+			                  <label>Date:</label>
+			                  <input type="date" class="form-control" name="Insert_Date" value='',required>
+			        		 </div>
+						   <div class="form-group">
+			                  <label>Particulars:</label>
+			                  <input type="text" class="form-control" name="Insert_Particulars" value = '',required>
+			         		</div>
+			         		<div class="form-group">
+			                  <label>Amount:</label>
+			                  <input type="text" class="form-control" name="Insert_Amount" value='',required>
+			        		 </div>
+			         		<div class="form-group">
+			                  <label>Actual_Amount:</label>
+			                  <input type="text" class="form-control" name="Insert_Actual_Amount" value='',required>
+			        		 </div>
+							 <div class="form-group">
+			                  <label>Account_Type:</label>
+			                  <input type="text" class="form-control" name="Insert_Account_Type" value='SPLITWISE',required>
+			        		 </div>
+							 <div class="form-group">
+			                  <label for = "Category">Category:
+			                  <input type="text" class = "form-control" name="Insert_Category" list = "cat_name" required>
+								<datalist id="cat_name">
+									{%for category in cats%}
+										<option value = "{{category['Category']}}">
+									{%endfor%}
+								</datalist>
+							   </label>
+							   
+			        		 </div>
+			        	<table>
+						
+						<tr>
+						<col width = "1000px" />
+						<col width = "100px" />
+						<td>
+			        		<div class = "form-group">
+			         			<button class = "btn btn-primary" type = "submit"> Insert Data</button>
+			         	
+			         		</div>
+						</td>
+						<td>
+			         	</form>
+			         		<form action = "/" method = "GET">
+			         		<button type = "submit" class = "btn btn-secondary">Close</button>
+			        	 	</form>
+						</td>
+						</tr>
+{% endblock content %}

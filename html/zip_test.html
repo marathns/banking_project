@@ -1,0 +1,84 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    
+      <meta charset="utf-8">
+      <title>Bokeh Plot</title>
+      
+      
+        
+          
+        
+        
+          
+        <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-1.3.4.min.js"></script>
+        <script type="text/javascript">
+            Bokeh.set_log_level("info");
+        </script>
+        
+      
+      
+    
+  </head>
+  
+  
+  <body>
+    
+      
+        
+          
+          
+            
+              <div class="bk-root" id="1e9abd23-7f49-4472-ba3d-af4eaba238e4" data-root-id="1004"></div>
+            
+          
+        
+      
+      
+        <script type="application/json" id="1094">
+          {"087b4040-b4ec-4dc0-a95c-64d2a3bcf716":{"roots":{"references":[{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"top":{"field":"counts"},"width":{"value":0.9},"x":{"field":"x"}},"id":"1028","type":"VBar"},{"attributes":{"callback":null,"tooltips":"@x sum: @$name"},"id":"1023","type":"HoverTool"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1023","type":"HoverTool"}]},"id":"1024","type":"Toolbar"},{"attributes":{"source":{"id":"1002","type":"ColumnDataSource"}},"id":"1030","type":"CDSView"},{"attributes":{"formatter":{"id":"1035","type":"BasicTickFormatter"},"ticker":{"id":"1019","type":"BasicTicker"}},"id":"1018","type":"LinearAxis"},{"attributes":{"dimension":1,"ticker":{"id":"1019","type":"BasicTicker"}},"id":"1022","type":"Grid"},{"attributes":{"grid_line_color":null,"ticker":{"id":"1015","type":"CategoricalTicker"}},"id":"1017","type":"Grid"},{"attributes":{},"id":"1033","type":"CategoricalTickFormatter"},{"attributes":{},"id":"1036","type":"UnionRenderers"},{"attributes":{},"id":"1012","type":"LinearScale"},{"attributes":{},"id":"1015","type":"CategoricalTicker"},{"attributes":{"callback":null,"start":0},"id":"1008","type":"DataRange1d"},{"attributes":{},"id":"1019","type":"BasicTicker"},{"attributes":{},"id":"1035","type":"BasicTickFormatter"},{"attributes":{},"id":"1010","type":"CategoricalScale"},{"attributes":{"callback":null,"factors":[["car fuel","20191"],["car fuel","20192"]],"range_padding":0.1},"id":"1003","type":"FactorRange"},{"attributes":{"formatter":{"id":"1033","type":"CategoricalTickFormatter"},"group_label_orientation":"vertical","major_label_orientation":1,"ticker":{"id":"1015","type":"CategoricalTicker"}},"id":"1014","type":"CategoricalAxis"},{"attributes":{"callback":null,"data":{"counts":[58.37,51.36],"x":[["car fuel","20191"],["car fuel","20192"]]},"selected":{"id":"1037","type":"Selection"},"selection_policy":{"id":"1036","type":"UnionRenderers"}},"id":"1002","type":"ColumnDataSource"},{"attributes":{"text":"Amounts by categories"},"id":"1005","type":"Title"},{"attributes":{"below":[{"id":"1014","type":"CategoricalAxis"}],"center":[{"id":"1017","type":"Grid"},{"id":"1022","type":"Grid"}],"left":[{"id":"1018","type":"LinearAxis"}],"plot_height":550,"plot_width":800,"renderers":[{"id":"1029","type":"GlyphRenderer"}],"title":{"id":"1005","type":"Title"},"toolbar":{"id":"1024","type":"Toolbar"},"toolbar_location":null,"x_range":{"id":"1003","type":"FactorRange"},"x_scale":{"id":"1010","type":"CategoricalScale"},"y_range":{"id":"1008","type":"DataRange1d"},"y_scale":{"id":"1012","type":"LinearScale"}},"id":"1004","subtype":"Figure","type":"Plot"},{"attributes":{"fill_color":{"value":"#1f77b4"},"line_color":{"value":"#1f77b4"},"top":{"field":"counts"},"width":{"value":0.9},"x":{"field":"x"}},"id":"1027","type":"VBar"},{"attributes":{"data_source":{"id":"1002","type":"ColumnDataSource"},"glyph":{"id":"1027","type":"VBar"},"hover_glyph":null,"muted_glyph":null,"name":"counts","nonselection_glyph":{"id":"1028","type":"VBar"},"selection_glyph":null,"view":{"id":"1030","type":"CDSView"}},"id":"1029","type":"GlyphRenderer"},{"attributes":{},"id":"1037","type":"Selection"}],"root_ids":["1004"]},"title":"Bokeh Application","version":"1.3.4"}}
+        </script>
+        <script type="text/javascript">
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+                    
+                  var docs_json = document.getElementById('1094').textContent;
+                  var render_items = [{"docid":"087b4040-b4ec-4dc0-a95c-64d2a3bcf716","roots":{"1004":"1e9abd23-7f49-4472-ba3d-af4eaba238e4"}}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        embed_document(root);
+                        clearInterval(timer);
+                      }
+                      attempts++;
+                      if (attempts > 100) {
+                        console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                        clearInterval(timer);
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != "loading") fn();
+            else document.addEventListener("DOMContentLoaded", fn);
+          })();
+        </script>
+    
+  </body>
+  
+</html>

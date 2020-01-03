@@ -1,0 +1,74 @@
+	{% extends 'layout.html' %}
+{% block content %}
+
+
+	<div class = "container">
+		<div class = "row">
+			<div class = "col md-12">
+						
+					 <table class = "table table-striped">
+					 <form action = "/about" name = "From" method = "POST">
+					  <tr>
+					   <td>
+			            <label for = "From"> Transactions From :
+						<select style = "display:none;">	
+							<input type="date"  name="Date_From" value='' min = "{{min}}" max = "{{max}}" required >
+						</select>
+						</label>
+			           </td>
+					   
+					   <td>
+			            <label for = "To"> Transactions To :
+						<select style = "display:none;">
+			                  <input type="date"  name="Date_To" value='' min = "{{min}}" max = "{{max}}" required >
+						</select>
+						</label>
+			           </td>
+					   
+					   <td>
+						<label for = "Account">Select Account:
+						<select name = "Account" method = "GET", action = "/">
+							<option value = "DISCOVER">Discover</option>
+							<option value = "AMEX">Amex</option>
+							<option value = "CHASE">Chase</option>
+							<option value = "PNC">PNC</option>
+						</select>
+						</label>
+					   </td>
+						
+					   <td>
+						<input type="submit" value="Submit ">
+					   </td>
+					</form>
+					</table>
+				</div>
+				<div style = "height:400px;overflow: auto">
+				<table class = "table table-striped">
+					<tr>
+						
+						<th>Transaction_ID</th>
+						<th>Date</th>
+						<th>Particulars</th>
+						<th>Amount</th>
+						<th>Actual_Amount</th>
+						<th>Account</th>
+						
+					</tr>
+
+					{% for result in results%}
+					<tr>
+						
+						<td>{{result["transaction_id"]}}</td>
+						<td>{{result["tran_date"]}}</td>
+						<td>{{result["tran_particulars"]}}</td>
+						<td>{{result["amount"]}}</td>
+						<td>{{result["actual_amount"]}}</td>
+						<td>{{result["acct_type"]}}</td>
+					</tr>
+					{%endfor%}
+				</table>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock content%}

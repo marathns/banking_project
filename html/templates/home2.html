@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="jumbotron">
+  <h2>Splitwise Transactions Download</h2>
+</div>
+
+<div class = "jumbotron">
+  <form action="/login" method="POST">
+
+  	<div class="form-group">
+  		<label>Date From:</label>
+  			<input type="date" class="form-control" name="Get_Trans_Date_From" value='' required>
+  	</div>
+  	<div class="form-group">
+  		<label>Date To:</label>
+  			<input type="date" class="form-control" name="Get_Trans_Date_To" value='' required>
+  	</div>
+
+
+  <table>
+  	<tr>
+  		<col width = "1000px" />
+  		<col width = "100px" />
+  	<td>
+  	<div class = "form-group">
+  		<button class = "btn btn-primary" type = "submit"> Insert Data</button>
+  	</td>
+  	</tr>
+  </table>
+  </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h3 align="center"> Budgeting </h3>
+<div class = "container">
+	<div class = "row">
+		
+		<div class = "col md-12">
+			<form action = "/budgeting" name = "GET">
+			<table width="1000px">
+			<td width = "50%">
+				<label>Select Month</label>
+				<select name = "get_date" id="get_date">
+					{%for date in dates%}
+						{%if date == current_date%}
+							<option selected value="{{date}}">{{date}}</option>
+						{%else%}
+							<option value="{{date}}">{{date}}</option>
+						{%endif%}
+					{%endfor%}
+				</select>
+				<input type="submit"/>
+			</form>
+			</td>
+			<td align="right" width="50%">
+				<form action = "/" method = "GET">
+					<button type = "submit" class = "btn btn-secondary" align = "right">Return to Home</button>
+				</form>
+			</td>
+			</table>
+			<div style = "height:400px; overflow: auto">
+			<table class = "table table-striped">
+
+				<tr>
+					<h5>
+					<th>
+						Category
+					</th>
+					
+					<th>
+						Exisitng Budget
+					</th>
+					
+					
+					<th>
+						Budget for Month
+					</th>
+					<th>
+						Action
+					</th>
+					
+					</h5>
+				</tr>
+					{%for cat in categories%}
+					<tr>
+					<td>
+						{{cat[0]}}
+					</td>
+					<td>
+						{{cat[1]}}
+					</td>
+						
+					<td>
+						<input type="text" name = "category_{{cat[0]}}" class="form-control" id="category_{{cat[0]}}" value = "0">
+					</td>
+					<td>
+						<button class="btn btn-primary updateButton" btn_id="{{cat[0]}}">Submit</button>
+					</td>
+					</tr>
+					{%endfor%}
+				
+			</table>
+			
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+ <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="{{url_for('static', filename='app1.js')}}"></script>
+
+{% endblock content %}

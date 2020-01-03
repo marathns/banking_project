@@ -1,0 +1,11 @@
+
+consumer_key = 'buftq4SN1h8k2nQaJFXXKrY0cjh7Bmj2vPGEYhZY'
+consumer_secret = 'e5IvSl8UDkgasLQ4ymGlgN91NWk0rB5f4J7lOfwG'
+FLASK_ENV = 'development'
+PLAID_CLIENT_ID = '5d48d18f55135b001480ac71'
+PLAID_PUBLIC_KEY = '34b103561ddb1fb432f5b922f4cc67'
+PLAID_SECRET = 'a9689bc3741c8630fad62c68dd2d10'
+PLAID_ENV = 'development'
+DISCOVER_ACCESS_TOKEN = 'access-development-f93761be-3fd8-4cda-a5b4-bf6c7694c6b4'
+AMEX_ACCESS_TOKEN = 'access-development-54403faa-d431-4c33-9f3a-002421a23bef'
+token_file = 'C:\\Users\\nmarathe\\PycharmProjects\\banking_project\\token_file.txt'

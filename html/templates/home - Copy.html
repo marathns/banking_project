@@ -1,0 +1,247 @@
+{% extends 'layout.html' %}
+{% block content %}
+	<div class = "container">
+		<div class = "row">
+			<div class = "col md-12">
+				<table class = "table table-striped">
+				<col align="center">
+				<col width="700px" align="center">
+				<tr>
+					<td>
+						<button type = "button" class = "btn btn-success pull-right" data-toggle = "modal" data-target = "#mytrans"> Get Transactions</button> 
+					</td>
+					<td style="text-align:center"><h4>Transactions List 
+					</h4>
+					</td>
+					<td>
+						<button type = "button" class = "btn btn-success pull-right" data-toggle = "modal" data-target = "#mymodel"> Add New Transactions</button> 
+					</td>
+				</tr>
+				</table>
+				
+				
+				<table class = "table table-striped">
+					 <form action = "/" name = "From">
+					  <tr>
+					   <td>
+			            <label for = "From"> Transactions From :
+						<select style = "display:none;">
+							{%if min == date_from%}
+								<input type="date"  name="Date_From" value="{{min}}" min = "{{min}}" max = "{{max}}" required >
+							{%else%}
+								<input type="date"  name="Date_From" value="{{date_from}}" min = "{{min}}" max = "{{max}}" required >
+							{%endif%}
+						</select>
+						</label>
+			           </td>
+					   
+					   <td>
+			            <label for = "To"> Transactions To :
+						<select style = "display:none;">
+							{%if min == date_to%}
+			                  <input type="date"  name="Date_To" value="{{max}}" min = "{{min}}" max = "{{max}}" required >
+							{%else%}
+							  <input type="date"  name="Date_To" value="{{date_to}}" min = "{{min}}" max = "{{max}}" required >
+							{%endif%}
+						</select>
+						</label>
+						
+						
+			           </td>
+				
+				
+					   <td>
+						<label for = "Account">Select Account:
+						<select name = "Account" >
+						{%for accnt in acc%}
+							{%if accnt == account%}
+								<option selected value = "{{accnt}}">{{accnt}}</option>
+							{%else%}
+								<option value = "{{accnt}}">{{accnt}}</option>
+							{%endif%}
+						{%endfor%}
+						</select>
+						</label>
+					   </td>
+						
+					   <td>
+						<input type="submit">
+					   </td>
+					</form>
+					</table>
+				
+				{% with messages = get_flashed_messages()%}
+				{% if messages %}
+
+				{% for message in messages%}
+				<div class = "alert alert-success alert-dismissable" role = 'alert'>
+					<button type="button" class="close" data-dismiss ="alert" aria-label="close">
+						<span aria-hidden="true">x</span>
+					</button>
+					{{message}}
+				</div>
+				{%endfor%}
+				{%endif%}
+				{%endwith%}
+				<div style = "height:350px;overflow: auto">
+				<table class = "table table-striped">
+					<col width = "110px" />
+					<col width = "250px" />
+					<tr>
+						
+						<th>Date</th>
+						<th>Particulars</th>
+						<th>Amount</th>
+						<th>Actual_Amount</th>
+						<th>Account</th>
+						<th>Category</th>
+						<th>Action</th>
+					</tr>
+
+					{% for result in results%}
+					<tr>
+						
+						<td>{{result["tran_date"]}}</td>
+						<td>{{result["tran_particulars"]}}</td>
+						<td>{{result["amount"]}}</td>
+						<td>
+							<input type="text" name="actual_amount" class="form-control" id="actual_amount{{result['transaction_id']}}" value="{{result['actual_amount']}}">
+						</td>
+						<td>{{result["acct_type"]}}</td>
+						<td>
+							<input type="text" name="category" id="category{{result['transaction_id']}}"  list="cats"  placeholder="{{result['category']}}"/>
+							<script type="text/javascript">
+								document.getElementById(category{{result['transaction_id']}}).value = {{result['category']}};
+							</script>
+								<datalist id="cats">
+										
+									{%for cat in cats%}
+										<option value = "{{cat[0]}}">{{cat[0]}}</option>
+									{%endfor%}
+						</td>
+						<td>
+							<button class="btn btn-primary updateButton" tran_id="{{result['transaction_id']}}">Update</button>
+						</td>
+					</tr>
+			
+
+			
+
+			
+
+		{%endfor%}
+			</div>
+			</table>
+			
+		</div>
+		<div>
+		<table class = "table table-striped">
+			<form action = "/ml_trans" name = "ML" method = "POST">
+				<tr>
+				<td><h5>
+				Submit Transactions to the ML Model after editing the categories : </h5>
+				</td>
+					<td>
+						<input type = "submit" value = "Submit">
+					</td>
+				</tr>
+			</form>
+		</table>
+		</div>
+
+	</div>
+		
+</div>
+
+			<div id="mytrans" class="modal fade" role="dialog">
+			   <div class="modal-dialog">
+			      <div class="modal-content">
+			         <div class="modal-header">
+			            <h4 class="modal-title">Get new Transactions</h4>
+			         </div>
+			         <div class="modal-body">
+						 <form action="{{url_for('get_trans')}}" method="POST">
+							<div class="form-group">
+			                  <label>Date From:</label>
+			                  <input type="date" class="form-control" name="Get_Trans_Date_From" value='' required>
+			        		 </div>
+							<div class="form-group">
+			                  <label>Date To:</label>
+			                  <input type="date" class="form-control" name="Get_Trans_Date_To" value='' required>
+			        		 </div>
+							 
+							<div class = "form-group">
+			         			<button class = "btn btn-primary" type = "submit"> Insert Data</button>
+			         	
+			         		</div>
+							
+						 </form>
+						 
+							<div class = "modal-footer">
+			         		<button type = "button" class = "btn btn-default" data-dismiss = "modal">Close</button>
+			        	 	</div>
+							
+					 </div>
+				  </div>
+			   </div>
+			</div>
+
+<div id="mymodel" class="modal fade" role="dialog">
+			   <div class="modal-dialog">
+			      <div class="modal-content">
+			         <div class="modal-header">
+			            <h4 class="modal-title">Insert new Transactions</h4>
+			         </div>
+			         <div class="modal-body">
+			            <form action="{{url_for('insert')}}" method="POST">
+			               <div class="form-group">
+			                  <label>Date:</label>
+			                  <input type="date" class="form-control" name="Insert_Date" value='',required>
+			        		 </div>
+						   <div class="form-group">
+			                  <label>Particulars:</label>
+			                  <input type="text" class="form-control" name="Insert_Particulars" value = '',required>
+			         		</div>
+			         		<div class="form-group">
+			                  <label>Amount:</label>
+			                  <input type="text" class="form-control" name="Insert_Amount" value='',required>
+			        		 </div>
+			         		<div class="form-group">
+			                  <label>Actual_Amount:</label>
+			                  <input type="text" class="form-control" name="Insert_Actual_Amount" value='',required>
+			        		 </div>
+							 <div class="form-group">
+			                  <label>Account_Type:</label>
+			                  <input type="text" class="form-control" name="Insert_Account_Type" value='SPLITWISE',required>
+			        		 </div>
+							 <div class="form-group">
+			                  <label for = "Category">Category:
+			                  <input type="text" class = "form-control" name="Insert_Category" list = "cat_name" required>
+								<datalist id="cat_name">
+									{%for category in cats%}
+										<option value = "{{category['Category']}}">
+									{%endfor%}
+								</datalist>
+							   </label>
+							   
+			        		 </div>
+			        		 
+			        		<div class = "form-group">
+			         			<button class = "btn btn-primary" type = "submit"> Insert Data</button>
+			         	
+			         		</div>
+			         	</form>
+			         		<div class = "modal-footer">
+			         		<button type = "button" class = "btn btn-default" data-dismiss = "modal">Close</button>
+			        	 	</div>
+			       	</div>
+				</div>
+			</div>
+
+		</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+ <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="{{url_for('static', filename='app.js')}}"></script>
+
+{% endblock content %}
